@@ -4,7 +4,7 @@
   "description": "todo server",
   "main": "server.js",
   "scripts": {
-    "start": "ts-node-dev --respawn ./src/server.ts"
+    "start": "ts-node-dev --respawn ./server.ts"
   },
   "author": "",
   "license": "ISC",

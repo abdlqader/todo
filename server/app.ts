@@ -15,10 +15,11 @@ export class App {
     //todo: winston logger byb error handlerMiddleWare
   }
   public async listen(PORT?: number) {
-    const port = PORT ? PORT : +process.env.PORT;
-    this.app.listen(port, process.env.HOST, () => {
+    const port = PORT ? PORT : +process.env.PORT!;
+    this.app.listen(port, process.env.HOST!, () => {
       console.log(
-        `Server is listening on port ${port}, running on environment ${process.env.NODE_ENV}`
+        `Server is listening on port ${port}, running on environment ${process
+          .env.NODE_ENV!}`
       );
     });
   }
