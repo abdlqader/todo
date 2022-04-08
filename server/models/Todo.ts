@@ -2,16 +2,23 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from './db/connection';
 import { User } from './User';
 
-export interface TodoInterface {
+export interface CreationTodoInterface {
+  title: string;
+  description: string;
+  userId: string;
+}
+interface AttributeTodoInterface {
   ID: number;
   title: string;
   description: string;
   userId: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+}
+export interface TodoInterface extends AttributeTodoInterface {
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export class Todo extends Model<TodoInterface, TodoInterface> {
+export class Todo extends Model<AttributeTodoInterface, CreationTodoInterface> {
   public ID!: number;
   public title!: string;
   public description!: string;
@@ -41,8 +48,9 @@ Todo.init(
   {
     tableName: 'Todos',
     sequelize,
+    paranoid: true,
   }
 );
-
+Todo.sync({ force: true });
 User.hasMany(Todo, { foreignKey: 'userId' });
 Todo.hasOne(User, { foreignKey: 'userId' });

@@ -1,16 +1,26 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from './db/connection';
 
-export interface UserInterface {
+export interface CreationUserInterface {
+  name: string;
+  email: string;
+  password: string;
+}
+interface AttributesUserInterface {
   ID: number;
   name: string;
   email: string;
   password: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+}
+export interface UserInterface extends AttributesUserInterface {
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export class User extends Model<UserInterface, UserInterface> {
+export class User extends Model<
+  AttributesUserInterface,
+  CreationUserInterface
+> {
   public ID!: number;
   public name!: string;
   public email!: string;
@@ -32,6 +42,7 @@ User.init(
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -40,5 +51,7 @@ User.init(
   {
     tableName: 'Users',
     sequelize,
+    paranoid: true,
   }
 );
+User.sync({ force: true });
