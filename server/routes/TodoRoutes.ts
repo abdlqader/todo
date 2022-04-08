@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { TodoController } from '../controllers/TodoController';
+import { isLoggedIn } from '../middleware/isLoggedIn';
 
 export const TodoRoutes = Router();
 const { createTodo, deleteTodo, updateTodo, fetchAll } = new TodoController();
-//todo authentication, body validation
-TodoRoutes.post('', createTodo);
-TodoRoutes.delete('', deleteTodo);
-TodoRoutes.put('', updateTodo);
-TodoRoutes.get('', fetchAll);
+TodoRoutes.post('', isLoggedIn, createTodo);
+TodoRoutes.delete('', isLoggedIn, deleteTodo);
+TodoRoutes.put('', isLoggedIn, updateTodo);
+TodoRoutes.get('', isLoggedIn, fetchAll);
