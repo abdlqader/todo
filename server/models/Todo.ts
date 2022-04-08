@@ -42,7 +42,7 @@ Todo.init(
       type: DataTypes.STRING,
     },
     userId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
     },
   },
   {
@@ -51,6 +51,6 @@ Todo.init(
     paranoid: true,
   }
 );
-Todo.sync({ force: true });
+Todo.sync();
 User.hasMany(Todo, { foreignKey: 'userId' });
-Todo.hasOne(User, { foreignKey: 'userId' });
+Todo.belongsTo(User, { foreignKey: 'userId' });

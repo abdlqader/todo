@@ -54,4 +54,4 @@ User.init(
     paranoid: true,
   }
 );
-User.sync({ force: true });
+User.sync();
