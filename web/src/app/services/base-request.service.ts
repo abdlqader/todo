@@ -94,7 +94,6 @@ export abstract class BaseRequestService {
     const path = this.getPath();
     const headers = this.getHeaders();
     const method = this.getMethod();
-    debugger;
     try {
       let result = await this.httpClient
         .request(method, path, { body, headers })

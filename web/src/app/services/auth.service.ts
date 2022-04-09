@@ -6,10 +6,14 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   constructor(private router: Router) {}
+  public login(token: string) {
+    this.setToken(token);
+    this.router.navigate(['/home']);
+  }
   private getToken(): string | null {
     return localStorage.getItem('token');
   }
-  public setToken(token: string) {
+  private setToken(token: string) {
     localStorage.setItem('token', token);
   }
   public isAuthenticated(): string | null {

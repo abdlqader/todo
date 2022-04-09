@@ -7,11 +7,11 @@ import { AuthService } from '../auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService extends BaseRequestService {
+export class RegisterService extends BaseRequestService {
   constructor(protected httpClient: HttpClient, private auth: AuthService) {
     super(httpClient);
     super.setMethod('post');
-    super.setPath(url.user.login);
+    super.setPath(url.user.register);
   }
   async processResult(response: { token: string }) {
     if (response.token) {

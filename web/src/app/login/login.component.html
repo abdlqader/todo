@@ -1,1 +1,31 @@
-<p>login works!</p>
+<mat-card>
+    <mat-card-content>
+      <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <h2 *ngIf="isLogin">Log In</h2>
+        <h2 *ngIf="!isLogin">Sign up</h2>
+        <mat-error *ngIf="!loginValid">
+          The username and password were not recognized
+        </mat-error>
+        <mat-form-field *ngIf="!isLogin">
+            <input matInput placeholder="Name" [(ngModel)]="name" name="name" required>
+            <mat-error>
+              Please provide a valid password
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+          <mat-error>
+            Please provide a valid email address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+          <mat-error>
+            Please provide a valid password
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="!form.form.valid">{{isLogin ? 'Login' : 'Sign up'}}</button>
+      </form>
+      <button mat-button (click)="switch()">{{isLogin ? 'Donot Have an account? Sign up now!' : 'Already have an account? Log in now!'}}</button>
+    </mat-card-content>
+  </mat-card>
