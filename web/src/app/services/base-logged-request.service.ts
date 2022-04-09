@@ -12,12 +12,7 @@ export class BaseLoggedRequestService extends BaseRequestService {
   }
   protected async _make() {
     const token = this.auth.isAuthenticated();
-    this.setHeaders(
-      new HttpHeaders({
-        ...this.getHeaders(),
-        authorization: token ? token : '',
-      })
-    );
+    this.setHeaders(new HttpHeaders({ authorization: token ? token : '' }));
     return super._make();
   }
 }

@@ -23,6 +23,6 @@ export class AuthService {
   }
   public logout(): void {
     localStorage.clear();
-    this.router.parseUrl('');
+    this.router.navigateByUrl('');
   }
 }

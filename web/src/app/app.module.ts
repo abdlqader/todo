@@ -18,8 +18,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { TodoDialogComponent } from './todo-dialog/todo-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    TodoDialogComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +40,9 @@ import { MatTableModule } from '@angular/material/table';
     MatIconModule,
     MatButtonModule,
     MatTableModule,
+    MatDialogModule,
   ],
+  exports: [MatDialogModule],
   providers: [],
   bootstrap: [AppComponent],
 })
