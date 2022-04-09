@@ -11,13 +11,13 @@ const { register, login } = new UserController();
 //todo body validation
 UserRoutes.post(
   '/register',
-  loginValidators(),
+  registerValidators(),
   ReqBodyValidationMiddleware,
   register
 );
 UserRoutes.post(
   '/login',
-  registerValidators,
+  loginValidators(),
   ReqBodyValidationMiddleware,
   login
 );
