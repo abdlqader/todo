@@ -8,8 +8,8 @@ import { AuthService } from '../auth.service';
   providedIn: 'root',
 })
 export class LoginService extends BaseRequestService {
-  constructor(protected httpClient: HttpClient, private auth: AuthService) {
-    super(httpClient);
+  constructor(protected httpClient: HttpClient, protected auth: AuthService) {
+    super(httpClient, auth);
     super.setMethod('post');
     super.setPath(url.user.login);
   }

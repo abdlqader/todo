@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -63,6 +65,9 @@ export abstract class BaseRequestService {
     switch (response.status) {
       case 400:
         throw { faultyRequest: response };
+      case 401:
+        this.auth.logout();
+        break;
       case 404:
         // redirect to 404 page
         break;
@@ -89,7 +94,7 @@ export abstract class BaseRequestService {
     }
   }
 
-  private async _make(): Promise<any> {
+  protected async _make(): Promise<any> {
     const body = this.getBody();
     const path = this.getPath();
     const headers = this.getHeaders();
@@ -104,5 +109,5 @@ export abstract class BaseRequestService {
       return this.preProcessResult(error);
     }
   }
-  constructor(protected httpClient: HttpClient) {}
+  constructor(protected httpClient: HttpClient, protected auth: AuthService) {}
 }
